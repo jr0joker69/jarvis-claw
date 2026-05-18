@@ -1,0 +1,40 @@
+{
+  "version": "1.0.0",
+  "agent": {
+    "name": "Jarvis Claw",
+    "model_priority": ["gemini", "groq", "mistral", "openrouter"],
+    "default_model": "gemini",
+    "max_tokens": 8192,
+    "temperature": 0.7,
+    "max_conversation_turns": 50,
+    "system_prompt": "You are Jarvis Claw, an elite AI agent. Be concise, accurate, and helpful. When you need current information, use the web search tool. Always cite your sources."
+  },
+  "llm": {
+    "gemini": { "enabled": true, "model": "gemini-2.5-flash", "max_retries": 3, "timeout_ms": 15000 },
+    "groq": { "enabled": true, "model": "llama-3.3-70b-versatile", "max_retries": 3, "timeout_ms": 10000 },
+    "mistral": { "enabled": true, "model": "mistral-large-latest", "max_retries": 3, "timeout_ms": 15000 },
+    "openrouter": { "enabled": true, "model": "anthropic/claude-3.5-sonnet", "max_retries": 3, "timeout_ms": 20000 }
+  },
+  "tools": {
+    "web_search": { 
+      "enabled": true, 
+      "provider": "tavily", 
+      "max_results": 5, 
+      "cache_ttl_seconds": 300,
+      "search_depth": "advanced"
+    },
+    "telegram": { "enabled": true, "webhook_enabled": false },
+    "clawhub": { "enabled": true }
+  },
+  "persistence": {
+    "type": "sqlite",
+    "path": "/data/.openclaw/memory.db",
+    "auto_backup": true,
+    "backup_interval_hours": 6
+  },
+  "rate_limit": {
+    "enabled": true,
+    "requests_per_minute": 10,
+    "window_seconds": 60
+  }
+}

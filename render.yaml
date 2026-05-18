@@ -1,0 +1,65 @@
+services:
+  - type: web
+    name: jarvis-claw
+    env: node
+    autoDeploy: true
+    buildCommand: |
+      set -e
+      echo "📦 Installing dependencies..."
+      curl -fsSL https://bun.sh/install | bash
+      export PATH="/root/.bun/bin:$PATH"
+      corepack enable pnpm
+      echo "📥 Installing packages..."
+      pnpm install --frozen-lockfile --production=false
+      echo "🔨 Building..."
+      pnpm build
+      echo "📦 Installing UI..."
+      pnpm ui:install
+      echo "🎨 Building UI..."
+      pnpm ui:build
+      echo "✅ Build complete!"
+    startCommand: bash start.sh
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: AGENT_NAME
+        value: Jarvis Claw
+      - key: VERSION
+        value: 1.0.0
+      - key: PRIMARY_LLM
+        value: gemini
+      - key: MAX_TOKENS
+        value: 8192
+      - key: TEMPERATURE
+        value: 0.7
+      - key: AUTO_WEB_SEARCH
+        value: true
+      - key: WEB_SEARCH_CACHE_TTL
+        value: 300
+      - key: RATE_LIMIT_PER_MIN
+        value: 10
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: MISTRAL_API_KEY
+        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: TAVILY_API_KEY
+        sync: false
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_WEBHOOK_SECRET
+        sync: false
+      - key: CLAWHUB_TOKEN
+        sync: false
+    disk:
+      name: jarvis-claw-data
+      mountPath: /data
+      sizeGB: 1
+    healthCheckPath: /health
+    routes:
+      - type: rewrite
+        source: /.*
+        destination: /

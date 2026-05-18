@@ -1,0 +1,7 @@
+{
+  "name": "memory",
+  "version": "1.0.0",
+  "description": "Persistent conversation memory using SQLite. Remembers context across sessions.",
+  "max_conversations": 100,
+  "max_turns_per_conversation": 50
+}

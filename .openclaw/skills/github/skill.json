@@ -1,0 +1,8 @@
+{
+  "name": "github",
+  "version": "1.0.0",
+  "description": "Interact with GitHub — search repos, read files, create issues, list PRs",
+  "requires_auth": true,
+  "auth_type": "bearer_token",
+  "rate_limit": 5000
+}

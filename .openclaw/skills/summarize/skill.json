@@ -1,0 +1,7 @@
+{
+  "name": "summarize",
+  "version": "1.0.0",
+  "description": "Summarize long text, articles, or conversation history with token budgeting",
+  "max_input_tokens": 12000,
+  "output_tokens": 500
+}

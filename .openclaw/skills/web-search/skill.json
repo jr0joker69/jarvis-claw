@@ -1,0 +1,10 @@
+{
+  "name": "web-search",
+  "version": "1.0.0",
+  "description": "Searches the web to bypass LLM knowledge cutoff. Caches results for 5 min.",
+  "triggers": ["current", "today", "latest", "news", "price", "recent", "now", "2025", "breaking"],
+  "tool": "tavily",
+  "max_results": 5,
+  "include_images": false,
+  "cache_ttl": 300
+}
