@@ -3,7 +3,7 @@ services:
     name: jarvis-claw
     env: node
     autoDeploy: true
-    buildCommand: "curl -fsSL https://bun.sh/install | bash && export PATH=\"/root/.bun/bin:$PATH\" && npm install -g pnpm --force && pnpm install --frozen-lockfile && pnpm build && pnpm ui:install && pnpm ui:build"
+    buildCommand: "curl -fsSL https://bun.sh/install | bash && export PATH=\"/root/.bun/bin:$PATH\" && npm install -g pnpm --force && pnpm install --frozen-lockfile --resolution-mode=highest && pnpm build && pnpm ui:install && pnpm ui:build"
     startCommand: bash start.sh
     envVars:
       - key: NODE_ENV
